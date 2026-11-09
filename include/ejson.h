@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,17 +12,17 @@ namespace ejson
 {
 	enum vtype
 	{
-		INT,//ÕûÊı
-		FLOAT,//¸¡µã
-		STRING,//×Ö·û´®
-		ARRAY,//Êı×é
-		OBJECT,//¶ÔÏó
-		PAIR,//¼üÖµ¶Ô
-		NUL,//¿ÕÖµ
-		DEL,//É¾³ı
-		EARRAY,//¿ÕÊı×é
-		EOBJECT,//¿Õ¶ÔÏó
-		NIPAIR//ĞÂÊı×Ö¼üÖµ¶Ô
+		INT,//æ•´æ•°
+		FLOAT,//æµ®ç‚¹
+		STRING,//å­—ç¬¦ä¸²
+		ARRAY,//æ•°ç»„
+		OBJECT,//å¯¹è±¡
+		PAIR,//é”®å€¼å¯¹
+		NUL,//ç©ºå€¼
+		DEL,//åˆ é™¤
+		EARRAY,//ç©ºæ•°ç»„
+		EOBJECT,//ç©ºå¯¹è±¡
+		NIPAIR//æ–°æ•°å­—é”®å€¼å¯¹
 	};
 
 	struct pair;
@@ -66,7 +66,7 @@ namespace ejson
 
 		void DeleteObjectNode();
 
-		//²åÈë²Ù×÷
+		//æ’å…¥æ“ä½œ
 		void InsertNewArray();
 
 		void InsertNewObject();
@@ -77,27 +77,43 @@ namespace ejson
 
 		size_t SeekEnd(char* ptr, char check);
 
+		jsonvalue SeekIPair(const int& nindex, const int& index);
+
+		jsonvalue SeekPair(const char* index);
+
 	public:
 		jsonvalue() = default;
 
 		jsonvalue(jsonfile* fptr, long offset, vtype type,vtype outer);
 
-		//ÀàĞÍÅĞ¶Ï
+		//ç±»å‹åˆ¤æ–­
 		vtype GetVType();
 
-		//±éÀú
+		//è·å–å¤§å°
+		size_t GetArraySize();
+
+		size_t GetObjectSize();
+
+		//å°è¯•è®¿é—®
+		std::pair<bool, jsonvalue> TryAccess(const int& index);
+
+		std::pair<bool, jsonvalue> TryAccess(const char* key);
+
+		//éå†
 		bool IPairs(int& key, jsonvalue& value, int step_length = 1);
 
 		bool Pairs(std::string& key, jsonvalue& object);
 
-		//¶ÁÈ¡²Ù×÷
+		//è¯»å–æ“ä½œ
+		jsonvalue& operator>>(const char** data);
+
 		jsonvalue& operator>>(std::string& data);
 
 		jsonvalue& operator>>(int& data);
 
 		jsonvalue& operator>>(double& data);
 
-		// 
+		//å†™å…¥æ“ä½œ
 		jsonvalue& operator<<(const int& data);
 
 		jsonvalue& operator<<(const char* data);
@@ -106,20 +122,16 @@ namespace ejson
 
 		jsonvalue& operator<<(const double& data);
 
-		//É¾³ı,¸³¿ÕÖµ,²åÈëĞÂµÄarrayºÍobject
+		//åˆ é™¤,èµ‹ç©ºå€¼,æ’å…¥æ–°çš„arrayå’Œobject
 		jsonvalue& operator<<(const vtype& data);
 
 		jsonvalue& operator<<(const pair& data);
 
-		//·ÃÎÊobject
+		//è®¿é—®object
 		jsonvalue operator[](const char* key);
 
-		//·ÃÎÊarray
+		//è®¿é—®array
 		jsonvalue operator[](const int& index);
-
-		jsonvalue SeekIPair(const int& nindex, const int& index);
-
-		jsonvalue SeekPair(const char* index);
 
 		void Flush();
 
@@ -147,7 +159,7 @@ namespace ejson
 		jsonvalue v;
 	};
 
-#define NPAIR(key) (const pair(key))//ĞÂ¼üÖµ¶Ô
+#define NPAIR(key) ejson::pair(key)//æ–°é”®å€¼å¯¹
 #define JSTRING(key) ((const char**)(key))//jstring
 
 	class jsonfile
@@ -162,6 +174,8 @@ namespace ejson
 		jsonfile(const char* path);
 
 		jsonvalue GetRootValue();
+
+		void Clear();
 
 		void Flush();
 

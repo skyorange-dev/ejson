@@ -1,8 +1,8 @@
-#include "ejson.h"
+ï»¿#include "ejson.h"
 
 namespace ejson
 {
-	//ÓÃÓÚÓÃ»§¶ÁÈ¡²Ù×÷£¬½«¶ÔÓ¦×Ö·û´®»º³åÇøµÄÊı¾İĞ´ÈëÍâ²¿string
+	//ç”¨äºç”¨æˆ·è¯»å–æ“ä½œï¼Œå°†å¯¹åº”å­—ç¬¦ä¸²ç¼“å†²åŒºçš„æ•°æ®å†™å…¥å¤–éƒ¨string
 	void jsonvalue::ToString(std::string& sdata)
 	{
 		int i = 0;
@@ -20,19 +20,19 @@ namespace ejson
 		/*return (char*)(_file->_buffer.data()+_data.first);*/
 	}
 
-	//ÓÃÓÚÓÃ»§¶ÁÈ¡²Ù×÷£¬½«×Ö·û´®»º³åÇøµÄÊı¾İ×ªÎªint
+	//ç”¨äºç”¨æˆ·è¯»å–æ“ä½œï¼Œå°†å­—ç¬¦ä¸²ç¼“å†²åŒºçš„æ•°æ®è½¬ä¸ºint
 	int jsonvalue::ToInt()
 	{
 		return std::atoi(_file->_buffer.data() + _data.first);
 	}
 
-	//ÓÃÓÚÓÃ»§¶ÁÈ¡²Ù×÷£¬½«×Ö·û´®»º³åÇøµÄÊı¾İ×ªÎªfloat
+	//ç”¨äºç”¨æˆ·è¯»å–æ“ä½œï¼Œå°†å­—ç¬¦ä¸²ç¼“å†²åŒºçš„æ•°æ®è½¬ä¸ºfloat
 	double jsonvalue::ToFloat()
 	{
 		return std::atof((char*)(_file->_buffer.data() + _data.first));
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬²åÈëstring
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œæ’å…¥string
 	void jsonvalue::InsertString(const char* data)
 	{
 		size_t size = strlen(data);
@@ -55,7 +55,7 @@ namespace ejson
 		_file->_back += size ;
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬²åÈëÕûint
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œæ’å…¥æ•´int
 	void jsonvalue::InsertInt(const int& data)
 	{
 		std::string tem(std::to_string(data));
@@ -65,7 +65,7 @@ namespace ejson
 		_file->_back += size;
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬²åÈëfloat
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œæ’å…¥float
 	void jsonvalue::InsertFloat(const double& data)
 	{
 		std::string tem(std::to_string(data));
@@ -75,13 +75,13 @@ namespace ejson
 		_file->_back += size;
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬²åÈënull
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œæ’å…¥null
 	void jsonvalue::InsertNull()
 	{
 		InsertString("null");
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬É¾³ıstring
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œåˆ é™¤string
 	void jsonvalue::DeleteString(char* data)
 	{
 		int i = 0;
@@ -95,7 +95,7 @@ namespace ejson
 		_file->_back -= i+2;
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬É¾³ıint
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œåˆ é™¤int
 	void jsonvalue::DeleteInt(char* data)
 	{
 		int i = 0;
@@ -108,7 +108,7 @@ namespace ejson
 		_file->_back -= i;
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬É¾³ıfloat
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œåˆ é™¤float
 	void jsonvalue::DeleteFloat(char* data)
 	{
 		int i = 0;
@@ -122,7 +122,7 @@ namespace ejson
 
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬É¾³ıarray
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œåˆ é™¤array
 	void jsonvalue::DeleteArray(char* data)
 	{
 		int i = 0;
@@ -155,7 +155,7 @@ namespace ejson
 
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬É¾³ınull
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œåˆ é™¤null
 	void jsonvalue::DeleteNull(char* data)
 	{
 		int i = 0;
@@ -168,7 +168,7 @@ namespace ejson
 		_file->_back -= i;
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬É¾³ıobject
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œåˆ é™¤object
 	void jsonvalue::DeleteObject(char* data)
 	{
 		int i = 0;
@@ -201,7 +201,7 @@ namespace ejson
 
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬É¾³ıarrayÖĞµÄÒ»¸öÊı¾İ½Úµã
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œåˆ é™¤arrayä¸­çš„ä¸€ä¸ªæ•°æ®èŠ‚ç‚¹
 	void jsonvalue::DeleteArrayNode()
 	{
 		CheckDelete();
@@ -257,7 +257,7 @@ namespace ejson
 		
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬É¾³ıobjectÖĞµÄÒ»¸öÊı¾İ½Úµã
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œåˆ é™¤objectä¸­çš„ä¸€ä¸ªæ•°æ®èŠ‚ç‚¹
 	void jsonvalue::DeleteObjectNode()
 	{
 		int head = 0;
@@ -342,7 +342,7 @@ namespace ejson
 
 	}
 
-	//ÓÃÓÚÓÃ»§Ğ´Èë²Ù×÷£¬¼ì²é×ÔÉíÀàĞÍÍê³ÉÊı¾İÉ¾³ı
+	//ç”¨äºç”¨æˆ·å†™å…¥æ“ä½œï¼Œæ£€æŸ¥è‡ªèº«ç±»å‹å®Œæˆæ•°æ®åˆ é™¤
 	void jsonvalue::CheckDelete()
 	{
 		switch (_data.second)
@@ -377,10 +377,229 @@ namespace ejson
 
 	}
 
-	//ÀàĞÍÅĞ¶Ï
+	//ç±»å‹åˆ¤æ–­
 	vtype jsonvalue::GetVType()
 	{
 		return _data.second;
+	}
+
+	//è·å–æ•°ç»„å¤§å°
+	size_t jsonvalue::GetArraySize()
+	{
+		auto re=_file->CheckValidData(_data.first,'[');
+		if (re.first == -1)
+		{
+			return 0;
+		}
+		int tindex = 1;
+		int i = _data.first;
+		int count = 1;
+		while (1)
+		{
+			if (_file->_buffer[i] == '[')
+			{
+				count++;
+			}
+			if (_file->_buffer[i] == '{')
+			{
+				count++;
+			}
+			if (_file->_buffer[i] == '}')
+			{
+				count--;
+			}
+			if (_file->_buffer[i] == ']')
+			{
+				count--;
+				if (count == 0)
+				{
+					return tindex;
+				}
+			}
+
+			if (count == 1)
+			{
+				if (_file->_buffer[i] == ',')
+				{
+					tindex++;
+				}
+			}
+
+			i++;
+		}
+	}
+
+	//è·å–å¯¹è±¡å¤§å°
+	size_t jsonvalue::GetObjectSize()
+	{
+		auto re = _file->CheckValidData(_data.first, '{');
+		if (re.first == -1)
+		{
+			return 0;
+		}
+		int tindex = 1;
+		int i = _data.first;
+		int count = 1;
+		while (1)
+		{
+			if (_file->_buffer[i] == '{')
+			{
+				count++;
+			}
+			if (_file->_buffer[i] == '[')
+			{
+				count++;
+			}
+			if (_file->_buffer[i] == ']')
+			{
+				count--;
+			}
+			if (_file->_buffer[i] == '}')
+			{
+				count--;
+				if (count == 0)
+				{
+					return tindex;
+				}
+			}
+
+			if (count == 1)
+			{
+				if (_file->_buffer[i] == ',')
+				{
+					tindex++;
+				}
+			}
+
+			i++;
+		}
+	}
+
+	//å°è¯•è®¿é—®æŸä¸ªç´¢å¼•æ˜¯å¦å­˜åœ¨
+	std::pair<bool,jsonvalue> jsonvalue::TryAccess(const int& index)
+	{
+		int tindex = 1;
+		int i = _data.first;
+		int count = 1;
+		while (1)
+		{
+			if (_file->_size - 1 < i)
+			{
+				return std::make_pair(false,jsonvalue(_file, -1, NUL, ARRAY));
+			}
+
+
+
+			if (_file->_buffer[i] == '[')
+			{
+				count++;
+			}
+			if (_file->_buffer[i] == '{')
+			{
+				count++;
+			}
+			if (_file->_buffer[i] == '}')
+			{
+				count--;
+			}
+			if (_file->_buffer[i] == ']')
+			{
+				count--;
+				if (count == 0)
+				{
+					return std::make_pair(false,jsonvalue(_file, -1, NUL, ARRAY));
+				}
+			}
+
+
+			if (index == tindex)
+			{
+				std::pair<long, vtype> ret = _file->CheckValidData(i, '[');
+				long re = ret.first;
+
+				if (re == -1)
+				{
+					std::cout << "It's found that json's format is not correct ï¼Œfinding array members ." << std::endl;
+					exit(1);
+				}
+
+				return std::make_pair(true,jsonvalue(_file, re, ret.second, ARRAY));
+			}
+
+			if (count == 1)
+			{
+				if (_file->_buffer[i] == ',')
+				{
+					tindex++;
+				}
+			}
+
+			i++;
+		}
+	}
+
+	//å°è¯•è®¿é—®æŸä¸ªç´¢å¼•,å¦‚æœä¸å­˜åœ¨è¿”å›false,å¦‚æœå­˜åœ¨è¿”å›tureå’Œå¯¹åº”çš„jsonvalue
+	std::pair<bool, jsonvalue> jsonvalue::TryAccess(const char* key)
+	{
+		int i = _data.first;
+		int count = 1;
+		while (1)
+		{
+			if (_file->_size - 1 < i)
+			{
+				return std::make_pair(false,jsonvalue(_file, -1, NUL, OBJECT));
+			}
+
+
+
+			if (_file->_buffer[i] == '{')
+			{
+				count++;
+			}
+
+			if (_file->_buffer[i] == '}')
+			{
+				count--;
+				if (count == 0)
+				{
+					return std::make_pair(false,jsonvalue(_file, -1, NUL, OBJECT));
+				}
+			}
+
+
+			if (_file->_buffer[i] == '"')
+			{
+				bool is_match = false;
+				long _key_index = i + 1;
+				size_t length = SeekEnd(&(_file->_buffer[i + 1]), '"') - (i + 1);
+				if (strlen(key) == length)
+				{
+					if (strncmp(&(_file->_buffer[i + 1]), key, length) == 0)
+					{
+						is_match = true;
+					}
+				}
+				i += length + 2;
+				if (is_match == true)
+				{
+					std::pair<long, vtype> ret = _file->CheckValidData(i, '{');
+					long re = ret.first;
+
+					if (re == -1)
+					{
+						std::string tem;
+						this->ToString(tem);
+						std::cout << "It's found that json's format is not correct ï¼Œfinding " << tem << " ." << std::endl;
+						exit(1);
+					}
+
+					return std::make_pair(true,jsonvalue(_file, re, ret.second, OBJECT));
+
+
+				}
+			}
+			i++;
+		}
 	}
 
 	jsonvalue jsonvalue::SeekIPair(const int& nindex,const int& index)
@@ -392,7 +611,6 @@ namespace ejson
 		{
 			count = 2;
 		}
-
 		while (1)
 		{
 			if (_file->_size - 1 < i)
@@ -431,7 +649,7 @@ namespace ejson
 
 				if (re == -1)
 				{
-					std::cout << "It's found that json's format is not correct £¬finding array members ." << std::endl;
+					std::cout << "It's found that json's format is not correct ï¼Œfinding array members ." << std::endl;
 					exit(1);
 				}
 
@@ -454,6 +672,10 @@ namespace ejson
 	{
 		int i = _data.first;
 		int count = 1;
+		if (_data.second == OBJECT || _data.second == ARRAY)
+		{
+			count = 2;
+		}
 		while (1)
 		{
 			if (_file->_size - 1 < i)
@@ -500,7 +722,7 @@ namespace ejson
 					{
 						std::string tem;
 						this->ToString(tem);
-						std::cout << "It's found that json's format is not correct £¬finding " << tem << " ." << std::endl;
+						std::cout << "It's found that json's format is not correct ï¼Œfinding " << tem << " ." << std::endl;
 						exit(1);
 					}
 
@@ -513,7 +735,7 @@ namespace ejson
 		}
 	}
 
-	//array±éÀú
+	//arrayéå†
 	bool jsonvalue::IPairs(int& key, jsonvalue& value, int step_length)
 	{
 		if (key == 0)
@@ -529,7 +751,7 @@ namespace ejson
 		}
 		else
 		{
-			const jsonvalue& tem = SeekIPair(key,key+1);
+			const jsonvalue& tem = value.SeekIPair(key,key+1);
 			key += step_length;
 			if (tem._data.first == -1)
 			{
@@ -543,7 +765,7 @@ namespace ejson
 
 	}
 
-	//object±éÀú
+	//objectéå†
 	bool jsonvalue::Pairs(std::string& key, jsonvalue& value)
 	{
 		if (key.size() == 0)
@@ -559,7 +781,7 @@ namespace ejson
 		}
 		else
 		{
-			const jsonvalue& tem = SeekPair(key.c_str());
+			const jsonvalue& tem = value.SeekPair(key.c_str());
 			long offset = tem._data.first;
 			char* data = (char*)(_file->_buffer.data() + offset);
 			int i = 0;
@@ -617,37 +839,80 @@ namespace ejson
 		
 	}
 
-	//¶ÁÈ¡²Ù×÷,¶ÁÈ¡×Ö·û´®Ğ´Èëµ½ÓÃ»§stringÖĞ
+	//è¯»å–æ“ä½œ,ä»¥JSTRINGçš„æ–¹å¼è¯»å–å­—ç¬¦ä¸²å†™å…¥åˆ°ç”¨æˆ·stringä¸­
+	jsonvalue& jsonvalue::operator>>(const char** data)
+	{
+		std::string* str = (std::string*)data;
+		char* source= (char*)(_file->_buffer.data() + _data.first);
+		if (_data.second == OBJECT)
+		{
+			size_t re=SeekEnd(source,'{');
+			str->resize(re-_data.first+2);
+			memcpy((char*)str->data(), source-1, re-_data.first+2);
+		}
+		else if (_data.second == ARRAY)
+		{
+			size_t re = SeekEnd(source, '[');
+			str->resize(re - _data.first + 2);
+			memcpy((char*)str->data(), source-1, re-_data.first+2);
+		}
+		else
+		{
+			std::cout << "Only the object or array can be read in the way converting jstring." << std::endl;
+			exit(1);
+		}
+
+	}
+
+	//è¯»å–æ“ä½œ,è¯»å–å­—ç¬¦ä¸²å†™å…¥åˆ°ç”¨æˆ·stringä¸­
 	jsonvalue& jsonvalue::operator>>(std::string& data)
 	{
+#ifndef NDEBUG
 		if (_data.second == STRING)
 		{
+#endif
+
 			ToString(data);
+#ifndef NDEBUG
 		}
+#endif
+
 		return*this;
 	}
 
-	//¶ÁÈ¡²Ù×÷,¶ÁÈ¡×Ö·û´®Ğ´Èëµ½ÓÃ»§intÖĞ
+	//è¯»å–æ“ä½œ,è¯»å–å­—ç¬¦ä¸²å†™å…¥åˆ°ç”¨æˆ·intä¸­
 	jsonvalue& jsonvalue::operator>>(int& data)
 	{
+#ifndef NDEBUG
 		if (_data.second == INT)
 		{
+#endif
+		
 			data = ToInt();
+
+#ifndef NDEBUG
 		}
+#endif
+		
 		return*this;
 	}
 
-	//¶ÁÈ¡²Ù×÷,¶ÁÈ¡×Ö·û´®Ğ´Èëµ½ÓÃ»§doubleÖĞ
+	//è¯»å–æ“ä½œ,è¯»å–å­—ç¬¦ä¸²å†™å…¥åˆ°ç”¨æˆ·doubleä¸­
 	jsonvalue& jsonvalue::operator>>(double& data)
 	{
+#ifndef NDEBUG
 		if (_data.second == FLOAT)
-		{
+	    {
+#endif
+
 			data = ToFloat();
+#ifndef NDEBUG
 		}
+#endif
 		return*this;
 	}
 
-	//Ğ´Èë²Ù×÷,½«ÓÃ»§intÊı¾İĞ´Èëµ½×Ö·û´®»º³åÇø
+	//å†™å…¥æ“ä½œ,å°†ç”¨æˆ·intæ•°æ®å†™å…¥åˆ°å­—ç¬¦ä¸²ç¼“å†²åŒº
 	jsonvalue& jsonvalue::operator<<(const int& data)
 	{
 		CheckDelete();
@@ -657,7 +922,7 @@ namespace ejson
 		return *this;
 	}
 
-	//Ğ´Èë²Ù×÷,½«ÓÃ»§stringÊı¾İĞ´Èëµ½×Ö·û´®»º³åÇø
+	//å†™å…¥æ“ä½œ,å°†ç”¨æˆ·stringæ•°æ®å†™å…¥åˆ°å­—ç¬¦ä¸²ç¼“å†²åŒº
 	jsonvalue& jsonvalue::operator<<(const char* data)
 	{
 		CheckDelete();
@@ -668,7 +933,7 @@ namespace ejson
 		return *this;
 	}
 
-	//Ğ´Èë²Ù×÷,½«ÓÃ»§jstringÊı¾İĞ´Èëµ½×Ö·û´®»º³åÇø
+	//å†™å…¥æ“ä½œ,å°†ç”¨æˆ·jstringæ•°æ®å†™å…¥åˆ°å­—ç¬¦ä¸²ç¼“å†²åŒº
 	jsonvalue& jsonvalue::operator<<(const char** data)
 	{
 		CheckDelete();
@@ -683,7 +948,7 @@ namespace ejson
 		return *this;
 	}
 
-	//Ğ´Èë²Ù×÷,½«ÓÃ»§doubleÊı¾İĞ´Èëµ½×Ö·û´®»º³åÇø
+	//å†™å…¥æ“ä½œ,å°†ç”¨æˆ·doubleæ•°æ®å†™å…¥åˆ°å­—ç¬¦ä¸²ç¼“å†²åŒº
 	jsonvalue& jsonvalue::operator<<(const double& data)
 	{
 		CheckDelete();
@@ -693,7 +958,7 @@ namespace ejson
 		return *this;
 	}
 
-	//Ğ´Èë²Ù×÷,Ö§³ÖÓÃ»§Ğ´Èënull,É¾³ı¶ÔÓ¦×Ö¶Î£¬Ğ´Èë¿Õarray£¬¿ÕobjectÒÑ¾­¿ÕÊı×Ö¼üÖµ¶Ô(array³ÉÔ±)
+	//å†™å…¥æ“ä½œ,æ”¯æŒç”¨æˆ·å†™å…¥null,åˆ é™¤å¯¹åº”å­—æ®µï¼Œå†™å…¥ç©ºarrayï¼Œç©ºobjectå·²ç»ç©ºæ•°å­—é”®å€¼å¯¹(arrayæˆå‘˜)
 	jsonvalue& jsonvalue::operator<<(const vtype& data)
 	{
 		switch (data)
@@ -728,37 +993,45 @@ namespace ejson
 			_data.first += 1;
 			break;
 		case NIPAIR:
-			if (_data.second != ARRAY)
 			{
-				std::cout << "Only the array can insert ipairs." << std::endl;
-				exit(1);
+	#ifndef NDEBUG
+				if (_data.second != ARRAY)
+				{
+					std::cout << "Only the array can insert ipairs." << std::endl;
+					exit(1);
+				}
+	#endif
+				/*_data.second =NUL ;*/
+				InsertNewIPair();
+				break;
 			}
-			/*_data.second =NUL ;*/
-			InsertNewIPair();
-			break;
+
 		}
 		_file->_Is_Changed = true;
 		return *this;
 	}
 
-	//Ğ´Èë²Ù×÷,Ö§³ÖÓÃ»§Ğ´Èë¼üÖµ¶Ô£¨object³ÉÔ±£©£¬ÅäºÏºêNPAIR
+	//å†™å…¥æ“ä½œ,æ”¯æŒç”¨æˆ·å†™å…¥é”®å€¼å¯¹ï¼ˆobjectæˆå‘˜ï¼‰ï¼Œé…åˆå®NPAIR
 	jsonvalue& jsonvalue::operator<<(const pair& data)
 	{
+#ifndef NDEBUG
 		if (_data.second != OBJECT)
-		{
-			std::cout << "Only the object can insert pairs." << std::endl;
-			exit(1);
-		}
+	    {
+		    std::cout << "Only the object can insert pairs." << std::endl;
+		    exit(1);
+	    }
+#endif
+	
 		/*_data.second = NUL;*/
 		InsertNewPair(data.k.c_str());
 		_file->_Is_Changed = true;
 		return *this;
 	}
 
-	//²åÈë²Ù×÷£¬Íù×Ö·û´®»º³åÇøĞ´Èë¿Õarray
+	//æ’å…¥æ“ä½œï¼Œå¾€å­—ç¬¦ä¸²ç¼“å†²åŒºå†™å…¥ç©ºarray
 	void jsonvalue::InsertNewArray()
 	{
-		//²åÈëĞÂÊı×é
+		//æ’å…¥æ–°æ•°ç»„
 	
 		_file->_buffer.insert(_data.first, "[ ]");
 		_file->_size += 3;
@@ -766,10 +1039,10 @@ namespace ejson
 
 	}
 
-	//²åÈë²Ù×÷£¬Íù×Ö·û´®»º³åÇøĞ´Èë¿Õobject
+	//æ’å…¥æ“ä½œï¼Œå¾€å­—ç¬¦ä¸²ç¼“å†²åŒºå†™å…¥ç©ºobject
 	void jsonvalue::InsertNewObject()
 	{
-		//²åÈëĞÂ¶ÔÏó
+		//æ’å…¥æ–°å¯¹è±¡
 	
 		_file->_buffer.insert(_data.first, "{ }");
 		_file->_size += 3;
@@ -777,10 +1050,10 @@ namespace ejson
 		
 	}
 
-	//²åÈë²Ù×÷£¬Íù×Ö·û´®»º³åÇøĞ´ÈëĞÂ¼üÖµ¶Ô
+	//æ’å…¥æ“ä½œï¼Œå¾€å­—ç¬¦ä¸²ç¼“å†²åŒºå†™å…¥æ–°é”®å€¼å¯¹
 	void jsonvalue::InsertNewPair(const char* key)
 	{
-		//²åÈëĞÂ¼üÖµ¶Ô
+		//æ’å…¥æ–°é”®å€¼å¯¹
 		auto re = _file->CheckValidData((char*)(_file->_buffer.data() + _data.first) - (char*)_file->_buffer.data(),'{');
 		if (re.first == -1)
 		{
@@ -807,10 +1080,10 @@ namespace ejson
 	
 	}
 
-	//²åÈë²Ù×÷£¬Íù×Ö·û´®»º³åÇøĞ´ÈëÊı×Ö¼üÖµ¶Ô
+	//æ’å…¥æ“ä½œï¼Œå¾€å­—ç¬¦ä¸²ç¼“å†²åŒºå†™å…¥æ•°å­—é”®å€¼å¯¹
 	void jsonvalue::InsertNewIPair()
 	{
-		//²åÈëĞÂÊı×Ö¼üÖµ¶Ô
+		//æ’å…¥æ–°æ•°å­—é”®å€¼å¯¹
 		auto re = _file->CheckValidData((char*)(_file->_buffer.data() + _data.first) - (char*)_file->_buffer.data(), '[');
 		if (re.first == -1)
 		{
@@ -891,17 +1164,18 @@ namespace ejson
 		}
 	}
 
-	//·ÃÎÊobject
+	//è®¿é—®object
 	jsonvalue jsonvalue::operator[](const char* key)
 	{
 		int i = _data.first;
 		int count = 1;
 		while(1)
 		{
-			if (_file->_size - 1 < i)
+		/*	if (_file->_size - 1 < i)
 			{
-				return jsonvalue(_file, -1, NUL, OBJECT);
-			}
+				std::cout << "An out-of-bounds error occurred during the key search process." << std::endl;
+				exit(1);
+			}*/
 
 
 
@@ -915,7 +1189,8 @@ namespace ejson
 				count--;
 				if (count == 0)
 				{
-					return jsonvalue(_file, -1, NUL, OBJECT);
+					std::cout << "There is no key-value pair with the key " << key << " in this object." << std::endl;
+					exit(1);
 				}
 			}
 
@@ -942,7 +1217,7 @@ namespace ejson
 					{
 						std::string tem;
 						this->ToString(tem);
-						std::cout << "It's found that json's format is not correct £¬finding " << tem << " ." << std::endl;
+						std::cout << "It's found that json's format is not correct ï¼Œfinding " << tem << " ." << std::endl;
 						exit(1);
 					}
 
@@ -955,7 +1230,7 @@ namespace ejson
 		}
 	}
 
-	//·ÃÎÊarray
+	//è®¿é—®array
 	jsonvalue jsonvalue::operator[](const int& index)
 	{
 		int tindex = 1;
@@ -963,10 +1238,11 @@ namespace ejson
 		int count = 1;
 		while (1)
 		{
-			if (_file->_size - 1 < i)
+			/*if (_file->_size - 1 < i)
 			{
-				return jsonvalue(_file, -1, NUL, ARRAY);
-			}
+				std::cout << "An out-of-bounds error occurred during the key search process." << std::endl;
+				exit(1);
+			}*/
 
 
 
@@ -987,7 +1263,8 @@ namespace ejson
 				count--;
 				if (count == 0)
 				{
-					return jsonvalue(_file, -1, NUL, ARRAY);
+					std::cout << "There is no key-value pair with the key " << index << " in this array." << std::endl;
+					exit(1);
 				}
 			}
 			
@@ -999,7 +1276,7 @@ namespace ejson
 
 				if (re == -1)
 				{
-					std::cout << "It's found that json's format is not correct £¬finding array members ." << std::endl;
+					std::cout << "It's found that json's format is not correct ï¼Œfinding array members ." << std::endl;
 					exit(1);
 				}
 
@@ -1018,7 +1295,7 @@ namespace ejson
 		}
 	}
 
-	//½«×Ö·û´®Êı¾İË¢ĞÂµ½ÎÄ¼şÖĞ
+	//å°†å­—ç¬¦ä¸²æ•°æ®åˆ·æ–°åˆ°æ–‡ä»¶ä¸­
 	void jsonvalue::Flush()
 	{
 		if (_file->_Is_Changed == true)
@@ -1029,7 +1306,7 @@ namespace ejson
 	
 	}
 
-	//¼ì²âºóÃæµÄÓĞĞ§Êı¾İÇé¿ö
+	//æ£€æµ‹åé¢çš„æœ‰æ•ˆæ•°æ®æƒ…å†µ
 	std::pair<long, vtype> jsonfile::CheckValidData(long index,char sign)
 	{
 		int count = 1;
@@ -1084,25 +1361,25 @@ namespace ejson
 					}
 				}
 			}
-			//Êı×é
+			//æ•°ç»„
 			if (_buffer[i] == 91)
 			{
 				return std::make_pair(i+1, ARRAY);
 			}
 
-			//¶ÔÏó
+			//å¯¹è±¡
 			if (_buffer[i] == 123)
 			{
 				return std::make_pair(i+1, OBJECT);
 			}
 
-			//×Ö·û´®
+			//å­—ç¬¦ä¸²
 			if (_buffer[i] == '\"')
 			{
 				return std::make_pair(i+1, STRING);
 			}
 
-			//Êı×Ö
+			//æ•°å­—
 			if (_buffer[i] == 45 || (_buffer[i] >= 48 && (_buffer[i] <= 57)))
 			{
 				bool is_float = false;
@@ -1127,7 +1404,7 @@ namespace ejson
 
 			}
 
-			//¿ÕÖµ
+			//ç©ºå€¼
 			if (_buffer[i] >= 97 && _buffer[i] <= 122)
 			{
 
@@ -1149,7 +1426,7 @@ namespace ejson
 		_Is_Changed = true;
 	}
 
-	//¹¹Ôìº¯Êı£¬µ±¶ÔÓ¦pathÃ»ÓĞÎÄ¼ş×Ô¶¯´´½¨²¢³õÊ¼»¯Îªnull
+	//æ„é€ å‡½æ•°ï¼Œå½“å¯¹åº”pathæ²¡æœ‰æ–‡ä»¶è‡ªåŠ¨åˆ›å»ºå¹¶åˆå§‹åŒ–ä¸ºnull
 	jsonfile::jsonfile(const char* path)
 		:_Is_Changed(false)
 	{
@@ -1158,9 +1435,9 @@ namespace ejson
 		if (file != NULL)
 		{
 			_file = file;
-			fseek(_file, 0, SEEK_END); // Ìøµ½ÎÄ¼şÄ©Î²
-			long size = ftell(_file);  // »ñÈ¡µ±Ç°Î»ÖÃ£¨Ò²¾ÍÊÇ×Ü×Ö½ÚÊı£©
-			fseek(_file, 0, SEEK_SET); // Ìø»ØÎÄ¼ş¿ªÍ·
+			fseek(_file, 0, SEEK_END); // è·³åˆ°æ–‡ä»¶æœ«å°¾
+			long size = ftell(_file);  // è·å–å½“å‰ä½ç½®ï¼ˆä¹Ÿå°±æ˜¯æ€»å­—èŠ‚æ•°ï¼‰
+			fseek(_file, 0, SEEK_SET); // è·³å›æ–‡ä»¶å¼€å¤´
 			if (size == 0)
 			{
 				std::cout << path << " is empty." << std::endl;
@@ -1191,7 +1468,7 @@ namespace ejson
 		}
 	}
 
-	//»ñÈ¡¸ù½ÚµãµÄjsonÊı¾İ
+	//è·å–æ ¹èŠ‚ç‚¹çš„jsonæ•°æ®
 	jsonvalue jsonfile::GetRootValue()
 	{
 		std::pair<long, vtype> ret = CheckValidData(0);
@@ -1206,7 +1483,7 @@ namespace ejson
 		return jsonvalue(this, re, ret.second,NUL);
 	}
 
-	//½«»º³åÇøÊı¾İË¢ĞÂµ½ÎÄ¼şÖĞ
+	//å°†ç¼“å†²åŒºæ•°æ®åˆ·æ–°åˆ°æ–‡ä»¶ä¸­
 	void jsonfile::Flush()
 	{
 		if (_file != NULL && _Is_Changed == true)
@@ -1219,7 +1496,14 @@ namespace ejson
 		}
 	}
 
-	//RAII£¬µ±¶ÔÏó±»ÊÍ·ÅÊ±×Ô¶¯½«Êı¾İË¢ĞÂµ½ÎÄ¼şÖĞ(Èç¹ûÊı¾İ±»¸ü¸ÄÁË)
+	void jsonfile::Clear()
+	{
+		_buffer.clear();
+		_buffer = "null";
+		_Is_Changed = true;
+	}
+
+	//RAIIï¼Œå½“å¯¹è±¡è¢«é‡Šæ”¾æ—¶è‡ªåŠ¨å°†æ•°æ®åˆ·æ–°åˆ°æ–‡ä»¶ä¸­(å¦‚æœæ•°æ®è¢«æ›´æ”¹äº†)
 	jsonfile::~jsonfile()
 	{
 		if (_file != NULL&&_Is_Changed==true)
