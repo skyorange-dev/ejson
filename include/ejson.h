@@ -17,7 +17,6 @@ namespace ejson
 		STRING,//字符串
 		ARRAY,//数组
 		OBJECT,//对象
-		PAIR,//键值对
 		NUL,//空值
 		DEL,//删除
 		EARRAY,//空数组
