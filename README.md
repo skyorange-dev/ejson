@@ -1,6 +1,6 @@
 # ejson
 
-[![XERJ Corpus Hub contributor](https://hub.xerj.org/contributors/skyorange-dev/badge.svg)](https://hub.xerj.org/contributors/skyorange-dev)
+[![XERJ Corpus Hub contributor](https://hub.xerj.org/contributors/SkyOrang/badge.svg)](https://hub.xerj.org/contributors/SkyOrang)
 
 Based on the C/C++ standard library, programmers can easily perform common operations such as adding, deleting, querying and modifying various fields in JSON files with excellent performance.
 
