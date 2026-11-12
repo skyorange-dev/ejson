@@ -6,6 +6,12 @@ Based on the C/C++ standard library, programmers can easily perform common opera
 
 For detailed instructions, please refer to the wiki.
 
+**Usage Guidelines**
+
+The high performance of ejson relies on correct usage.
+
+ejson is not a beginner-friendly, zero-configuration JSON parser like nlohmann. To achieve O(1) time complexity for access operations and near 100% memory efficiency, you must follow our best practices (batch insertion and handle caching). Misuse of the API will result in significant performance degradation. All tests above reflect optimal results leveraging two key features of ejson: inserting large batches of strings at once and handle caching. If your test scenario involves searching from the root each time, the performance difference will be substantial—reflecting the gap between O(1) and O(n) time complexity.
+
 **Characteristics**
 
 - Utilizes interfaces for simplicity and efficiency (based on [], <<, >> operator overloading)
