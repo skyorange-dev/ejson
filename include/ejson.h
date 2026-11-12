@@ -1,12 +1,18 @@
 ﻿#pragma once
+
+// 默认情况:强崩溃
+#ifndef EJSON_SILENT 
+#define EJSONE_COLLAPSE 
+#endif
+
 #define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
 #include <stdlib.h>
-#include <iostream>
 #include <string>
 #include <unordered_map>
 #include <vector>
 #include <memory>
+
+
 
 namespace ejson
 {
@@ -189,3 +195,83 @@ namespace ejson
 		bool _Is_Changed;
 	};
 }
+
+#ifdef EJSON_SILENT
+
+//ejson错误处理
+namespace ejson
+{
+	enum error_code
+	{
+		NORMAL=0,//正常
+		ARRAY_FORMAT_ERROR,//数组格式错误
+		OBJECT_FORMAT_ERROR,//对象格式错误
+		JSTRING_READ_ERROR,//JSTING读取错误
+		OBJECT_ACCESS_ERROR,//对象访问错误
+		ARRAY_ACCESS_ERROR,//数组访问错误
+		FILE_EMPTY_ERROR,//空文件错误
+		ROOT_FORMAT_ERROR,//根节点错误
+		STRING_WRITE_ERROR,//字符串写入错误
+		INT_WRITE_ERROR,//整形写入错误
+		FLOAT_WRITE_ERROR,//浮点型写入错误
+		NEW_IPAIR_ERROR,//插入新数字键值对错误
+		NEW_PAIR_ERROR,//插入新键值对错误
+		OBJECT_OUT_ERROR,//对象越界错误
+		ARRAY_OUT_ERROR//数组越界错误
+	};
+
+	typedef void (*error_func) (error_code);
+
+	extern thread_local error_code error;
+
+	extern thread_local error_func efunc;
+
+	inline error_code GetError()
+	{
+		return error;
+	}
+
+	inline void SetErrorCallBack(error_func func)
+	{
+		efunc = func;
+	}
+
+	inline const char* GetErrorString(error_code code)
+	{
+		switch (code)
+		{
+		case NORMAL:
+			break;
+		case ARRAY_FORMAT_ERROR:
+			return "It's found that json's format is not correct ，finding array members .";
+		case OBJECT_FORMAT_ERROR:
+			return "It's found that json's format is not correct ，finding object members.";
+		case JSTRING_READ_ERROR:
+			return "Only the object or array can be read in the way converting jstring.";
+		case OBJECT_ACCESS_ERROR:
+			return "There is no key-value pair with the key in this object.";
+		case ARRAY_ACCESS_ERROR:
+			return "There is no key-value pair with the key in this array.";
+		case FILE_EMPTY_ERROR:
+			return "file is empty.";
+		case ROOT_FORMAT_ERROR:
+			return "json's format is not correct finding root value .";
+		case STRING_WRITE_ERROR:
+			return "The jsonvalue type read does not match the string type.";
+		case INT_WRITE_ERROR:
+			return "The jsonvalue type read does not match the int type.";
+		case FLOAT_WRITE_ERROR:
+			return "The jsonvalue type read does not match the float type.";
+		case NEW_IPAIR_ERROR:
+			return "Only objects can be inserted into ipairs.";
+		case NEW_PAIR_ERROR:
+			return "Only objects can be inserted into pairs.";
+		case OBJECT_OUT_ERROR:
+			return "Out-of-bounds access to object";
+		case ARRAY_OUT_ERROR:
+			return "Out-of-bounds access to array";
+		}
+	}
+}
+
+#endif
