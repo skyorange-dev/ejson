@@ -241,7 +241,7 @@ namespace ejson
 		switch (code)
 		{
 		case NORMAL:
-			break;
+			return "Everything is normal.";
 		case ARRAY_FORMAT_ERROR:
 			return "It's found that json's format is not correct ，finding array members .";
 		case OBJECT_FORMAT_ERROR:
