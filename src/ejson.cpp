@@ -2917,7 +2917,7 @@ namespace ejson
 #ifndef NDEBUG
 			if (_file->_size - 1 < i)
 			{
-				std::cout << "An out-of-bounds error occurred during the key search process." << std::endl;
+				printf("An out-of-bounds error occurred during the key search process.\n");
 				exit(1);
 			}
 #endif
@@ -2986,7 +2986,7 @@ namespace ejson
 #ifndef NDEBUG
 			if (_file->_size - 1 < i)
 			{
-				std::cout << "An out-of-bounds error occurred during the key search process." << std::endl;
+				printf("An out-of-bounds error occurred during the key search process.\n");
 				exit(1);
 			}
 #endif
