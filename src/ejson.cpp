@@ -806,19 +806,32 @@ namespace ejson
 			{
 				return false;
 			}
-			(jsonvalue(_file, re.first, re.second, OBJECT)).ToString(key);
-			value = (*this)[key.c_str()];
+			jvalue tem(_file, re.first, re.second, OBJECT);
+			tem.ToString(key);
+			int last_offset = re.first;
+			char* pr = (char*)(_file->_buffer.data()) + re.first;
+			int it = 0;
+			while (1)
+			{
+				if (pr[it] == '"')
+				{
+					it++;
+					break;
+				}
+				it++;
+			}
+			auto ret = _file->CheckValidData(last_offset + it, '{');
+			value = jvalue(_file, ret.first, ret.second, OBJECT);
 			return true;
 		}
 		else
 		{
-			const jsonvalue& tem = value.SeekPair(key.c_str());
-			long offset = tem._data.first;
+			long offset = value._data.first;
 			char* data = (char*)(_file->_buffer.data() + offset);
 			int i = 0;
 			bool is_find = false;
 			int count1 = 1;
-			if (tem._data.second == OBJECT || tem._data.second == ARRAY)
+			if (value._data.second == OBJECT || value._data.second == ARRAY)
 			{
 				count1 = 2;
 			}
@@ -830,19 +843,19 @@ namespace ejson
 				{
 					return false;
 				}
-				if (data[i] == '[')
+				else if (data[i] == '[')
 				{
 					count1++;
 				}
-				if (data[i] == ']')
+				else if (data[i] == ']')
 				{
 					count1--;
 				}
-				if (data[i] == '{')
+				else if (data[i] == '{')
 				{
 					count1++;
 				}
-				if (data[i] == '}')
+				else if (data[i] == '}')
 				{
 					count1--;
 					if (count1 == 0)
@@ -850,7 +863,7 @@ namespace ejson
 						break;
 					}
 				}
-				if (data[i] == ',' && count1 == 1)
+				else if (data[i] == ',' && count1 == 1)
 				{
 					is_find = true;
 					break;
@@ -863,9 +876,24 @@ namespace ejson
 				return false;
 			}
 			auto re = _file->CheckValidData(offset + i, '{');
-			(jsonvalue(_file, re.first, re.second, OBJECT)).ToString(key);
-			value = (*this)[key.c_str()];
-		}
+			jvalue tem(_file, re.first, re.second, OBJECT);
+			tem.ToString(key);
+			int last_offset = re.first;
+			char* pr =(char*)( _file->_buffer.data()) + re.first;
+			int it = 0;
+			while (1)
+			{
+				if (pr[it] == '"')
+				{
+					it++;
+					break;
+				}
+				it++;
+			}
+			auto ret = _file->CheckValidData(last_offset + it, '{');
+			value = jvalue(_file, ret.first, ret.second, OBJECT);
+			return true;
+	    }
 
 
 	}
@@ -2457,48 +2485,61 @@ namespace ejson
 	{
 		if (key.size() == 0)
 		{
-			auto re = _file->CheckValidData(_data.first,'{');
+			auto re = _file->CheckValidData(_data.first, '{');
 			if (re.first == -1)
 			{
 				return false;
 			}
-			(jsonvalue(_file, re.first, re.second, OBJECT)).ToString(key);
-			value = (*this)[key.c_str()];
+			jvalue tem(_file, re.first, re.second, OBJECT);
+			tem.ToString(key);
+			int last_offset = re.first;
+			char* pr = (char*)(_file->_buffer.data()) + re.first;
+			int it = 0;
+			while (1)
+			{
+				if (pr[it] == '"')
+				{
+					it++;
+					break;
+				}
+				it++;
+			}
+			auto ret = _file->CheckValidData(last_offset + it, '{');
+			value = jvalue(_file, ret.first, ret.second, OBJECT);
 			return true;
 		}
 		else
 		{
-			const jsonvalue& tem = value.SeekPair(key.c_str());
-			long offset = tem._data.first;
+			long offset = value._data.first;
 			char* data = (char*)(_file->_buffer.data() + offset);
 			int i = 0;
 			bool is_find = false;
 			int count1 = 1;
-			if (tem._data.second==OBJECT|| tem._data.second == ARRAY)
+			if (value._data.second == OBJECT || value._data.second == ARRAY)
 			{
 				count1 = 2;
 			}
-			
+
 			int count2 = 0;
 			while (1)
 			{
-				if (_file->_size - 1 < i+offset)
+				if (_file->_size - 1 < i + offset)
 				{
 					return false;
 				}
-				if (data[i] == '[')
+				else if (data[i] == '[')
 				{
 					count1++;
 				}
-				if (data[i] == ']')
+				else if (data[i] == ']')
 				{
 					count1--;
 				}
-				if (data[i] == '{')
+				else if (data[i] == '{')
 				{
 					count1++;
 				}
-				if (data[i] == '}')
+				else if (data[i] == '}')
 				{
 					count1--;
 					if (count1 == 0)
@@ -2506,22 +2547,37 @@ namespace ejson
 						break;
 					}
 				}
-				if (data[i] == ','&&count1==1)
+				else if (data[i] == ',' && count1 == 1)
 				{
 					is_find = true;
 					break;
 				}
-			
+
 				i++;
 			}
 			if (is_find == false)
 			{
 				return false;
 			}
-			auto re=_file->CheckValidData(offset+i,'{');
-			(jsonvalue(_file, re.first, re.second, OBJECT)).ToString(key);
-			value = (*this)[key.c_str()];
-		}
+			auto re = _file->CheckValidData(offset + i, '{');
+			jvalue tem(_file, re.first, re.second, OBJECT);
+			tem.ToString(key);
+			int last_offset = re.first;
+			char* pr =(char*)( _file->_buffer.data()) + re.first;
+			int it = 0;
+			while (1)
+			{
+				if (pr[it] == '"')
+				{
+					it++;
+					break;
+				}
+				it++;
+			}
+			auto ret = _file->CheckValidData(last_offset + it, '{');
+			value = jvalue(_file, ret.first, ret.second, OBJECT);
+			return true;
+	    }
 		
 		
 	}
